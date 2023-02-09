@@ -1,6 +1,6 @@
 package no.hvl.dat110.system.controller;
 
-import java.io.UnsupportedEncodingException;
+
 import no.hvl.dat110.rpc.*;
 import no.hvl.dat110.rpc.RPCUtils;
 

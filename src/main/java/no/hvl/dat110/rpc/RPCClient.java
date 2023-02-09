@@ -41,15 +41,14 @@ public class RPCClient {
 		
 		//The rpcid and param must be encapsulated according to the RPC message format
 		//The return value from the RPC call must be decapsulated according to the RPC message format
+		
+		System.out.println(param.length);
 		Message message = new Message(RPCUtils.encapsulate(rpcid, param));
 		connection.send(message);
-		Message receive;
-		try {
-			receive = connection.receive();
-			returnval = receive.getData();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Message response;
+		
+		response= connection.receive();
+		returnval = response.getData();
 		
 
 		return returnval;

@@ -6,7 +6,7 @@ import java.util.Arrays;
 import no.hvl.dat110.TODO;
 
 public class RPCUtils {
-	
+
 	
 	public static byte[] encapsulate(byte rpcid, byte[] payload) {
 		
@@ -14,7 +14,7 @@ public class RPCUtils {
 		// Encapsulate the rpcid and payload in a byte array according to the RPC message syntax / format
 		rpcmsg[0]= rpcid;
 		
-		for (int i=0; i<rpcmsg.length; i++) {
+		for (int i=0; i<rpcmsg.length-1; i++) {
 			rpcmsg[i+1]=payload[i];
 		}
 		
@@ -28,7 +28,7 @@ public class RPCUtils {
 		byte[] payload = new byte[rpcmsg.length-1];
 		
 		// Decapsulate the rpcid and payload in a byte array according to the RPC message syntax
-		for (int i=0; i<rpcmsg.length; i++) {
+		for (int i=0; i<rpcmsg.length-1; i++) {
 			payload[i]=rpcmsg[i+1];
 		}
 		

@@ -1,9 +1,7 @@
 package no.hvl.dat110.rpc;
-
 import java.util.HashMap;
-
-import no.hvl.dat110.TODO;
 import no.hvl.dat110.messaging.MessageConnection;
+import no.hvl.dat110.messaging.MessageUtils;
 import no.hvl.dat110.messaging.Message;
 import no.hvl.dat110.messaging.MessagingServer;
 
@@ -15,6 +13,7 @@ public class RPCServer {
 	// hashmap to register RPC methods which are required to extend RPCRemoteImpl
 	// the key in the hashmap is the RPC identifier of the method
 	private HashMap<Byte,RPCRemoteImpl> services;
+
 	
 	public RPCServer(int port) {
 		
@@ -41,18 +40,31 @@ public class RPCServer {
 		   byte rpcid = 0;
 		   Message requestmsg, replymsg;
 		   
-		   // TODO - START
-		   // - receive a Message containing an RPC request
-		  
-		   // - extract the identifier for the RPC method to be invoked from the RPC request
+		   // TODO 
 		   
-		   // - lookup the method to be invoked
-		   
-		   // - invoke the method
-		   
-		   // - send back the message containing RPC reply
-			
-		   
+			   // - receive a Message containing an RPC request
+			requestmsg = connection.receive();
+			 
+			// - extract the identifier for the RPC method to be invoked from the RPC request
+			   byte[] data = requestmsg.getData();
+			   
+			   rpcid = data[0];
+			// - lookup the method to be invoked
+			   RPCRemoteImpl methodInvoked = services.get(rpcid);
+			   
+			   // - invoke the method
+			   byte[] response = methodInvoked.invoke(RPCUtils.decapsulate(requestmsg.getData()));
+			 // replymsg = new Message(services.get(rpcid).invoke(RPCUtils.decapsulate(data)));
+			   
+			  
+			   replymsg=new Message(response);
+			   
+			   MessageUtils.encapsulate(replymsg);
+			   // - send back the message containing RPC reply
+			   connection.send(replymsg);
+			   
+		
+		 
 		  
 
 			// stop the server if it was stop methods that was called

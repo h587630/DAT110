@@ -43,7 +43,7 @@ public class MessageConnection {
 		}catch(IOException ex) {
 			
 		}}
-	public Message receive() throws IOException {
+	public Message receive() {
 
 		Message message = null;
 		byte[] data;
