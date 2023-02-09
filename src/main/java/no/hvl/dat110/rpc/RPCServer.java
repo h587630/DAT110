@@ -43,15 +43,17 @@ public class RPCServer {
 		   
 		   // TODO - START
 		   // - receive a Message containing an RPC request
+		  
 		   // - extract the identifier for the RPC method to be invoked from the RPC request
+		   
 		   // - lookup the method to be invoked
+		   
 		   // - invoke the method
+		   
 		   // - send back the message containing RPC reply
 			
-		   if (true)
-				throw new UnsupportedOperationException(TODO.method());
 		   
-		   // TODO - END
+		  
 
 			// stop the server if it was stop methods that was called
 		   if (rpcid == RPCCommon.RPIDSTOP) {
